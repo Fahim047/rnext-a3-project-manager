@@ -3,7 +3,7 @@ import { getColor } from '../utils/getColor';
 import { BarsArrowDown } from './icons';
 import Task from './Task';
 
-const TaskCategory = ({ taskType }) => {
+const TaskCategory = ({ taskType, tasks }) => {
 	const [bgColor, textColor] = getColor(taskType);
 
 	return (
@@ -15,12 +15,14 @@ const TaskCategory = ({ taskType }) => {
 				</div>
 
 				<div>
-					<Task
-						titleColor={textColor}
-						title="Develop API"
-						description="Prepare proctor for client meeting"
-						createdAt="February 20, 2024"
-					/>
+					{tasks.map((task) => (
+						<Task
+							titleColor={textColor}
+							title={task.title}
+							description={task.description}
+							createdAt={task.creationDate}
+						/>
+					))}
 				</div>
 
 				{/* <!-- Add more task cards here --> */}
