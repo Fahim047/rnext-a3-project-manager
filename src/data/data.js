@@ -17,3 +17,5 @@ export const navLinks = [
 	{ label: 'Messages', icon: MessageIcon },
 	{ label: 'Settings', icon: SettingIcon },
 ];
+
+export const taskCategories = ['To-Do', 'On Progress', 'Done', 'Revise'];
