@@ -2,7 +2,7 @@ import { taskCategories } from '../data/data';
 import { PlusIcon } from './icons';
 import TaskCategory from './TaskCategory';
 
-const TaskBoard = () => {
+const ProjectBoard = () => {
 	return (
 		<div className="mx-auto max-w-7xl p-6">
 			<div className="mb-6 flex items-center justify-between">
@@ -17,11 +17,11 @@ const TaskBoard = () => {
 
 			<div className="-mx-2 mb-6 flex flex-wrap">
 				{taskCategories.map((category) => (
-					<TaskCategory key={category} />
+					<TaskCategory key={category} taskType={category} />
 				))}
 			</div>
 		</div>
 	);
 };
 
-export default TaskBoard;
+export default ProjectBoard;

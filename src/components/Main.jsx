@@ -1,5 +1,5 @@
 import Header from './Header';
-import TaskBoard from './TaskBoard';
+import ProjectBoard from './ProjectBoard';
 
 const Main = () => {
 	return (
@@ -7,7 +7,7 @@ const Main = () => {
 			{/* <!-- Top Bar --> */}
 			<Header />
 			{/* <!-- Project Content --> */}
-			<TaskBoard />
+			<ProjectBoard />
 		</main>
 	);
 };
