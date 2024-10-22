@@ -4,17 +4,22 @@ const BarsArrowUp = () => {
 	return (
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
-			fill="none"
+			width="18"
+			height="18"
 			viewBox="0 0 24 24"
-			strokeWidth={1.5}
+			fill="none"
 			stroke="currentColor"
-			className="size-6"
+			stroke-width="2"
+			stroke-linecap="round"
+			stroke-linejoin="round"
+			class="icon icon-tabler icons-tabler-outline icon-tabler-sort-ascending"
 		>
-			<path
-				strokeLinecap="round"
-				strokeLinejoin="round"
-				d="M3 4.5h14.25M3 9h9.75M3 13.5h5.25m5.25-.75L17.25 9m0 0L21 12.75M17.25 9v12"
-			/>
+			<path stroke="none" d="M0 0h24v24H0z" fill="none" />
+			<path d="M4 6l7 0" />
+			<path d="M4 12l7 0" />
+			<path d="M4 18l9 0" />
+			<path d="M15 9l3 -3l3 3" />
+			<path d="M18 6l0 12" />
 		</svg>
 	);
 };

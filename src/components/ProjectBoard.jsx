@@ -5,12 +5,18 @@ import TaskCategory from './TaskCategory';
 
 const ProjectBoard = () => {
 	const [tasks, setTasks] = useState(tasksData);
+	const handleAddTask = (newTask) => {
+		setTasks([...tasks, newTask]);
+	};
 	return (
 		<div className="mx-auto max-w-7xl p-6">
 			<div className="mb-6 flex items-center justify-between">
 				<h2 className="text-2xl font-bold">Projectify</h2>
 				<div className="flex space-x-2">
-					<button className="flex items-center rounded-md bg-gray-700 px-4 py-2 text-white">
+					<button
+						className="flex items-center rounded-md bg-gray-700 px-4 py-2 text-white"
+						onClick={handleAddTask}
+					>
 						<PlusIcon />
 						Add
 					</button>
