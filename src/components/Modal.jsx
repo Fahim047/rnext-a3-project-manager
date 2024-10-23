@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { useTasks } from '../contexts/TasksContext';
 
-const Modal = ({ isOpen, onClose, currentTask }) => {
+const Modal = ({ isOpen, closeModal, currentTask }) => {
+	const isAdd = currentTask ? false : true;
 	const { dispatch } = useTasks();
 	const [task, setTask] = useState(
 		currentTask ?? {
@@ -12,7 +13,6 @@ const Modal = ({ isOpen, onClose, currentTask }) => {
 			status: 'To-Do',
 		}
 	);
-	const [isAdd, setIsAdd] = useState(currentTask ? false : true);
 	const handleChange = (e) => {
 		const name = e.target.name;
 		const value = e.target.value;
@@ -23,18 +23,11 @@ const Modal = ({ isOpen, onClose, currentTask }) => {
 	};
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		if (isAdd) {
-			dispatch({
-				type: 'ADD',
-				payload: task,
-			});
-		} else {
-			dispatch({
-				type: 'UPDATE',
-				payload: task,
-			});
-		}
-		onClose();
+		dispatch({
+			type: isAdd ? 'ADD' : 'UPDATE',
+			payload: task,
+		});
+		closeModal();
 	};
 	if (!isOpen) return null;
 	return (
@@ -56,6 +49,7 @@ const Modal = ({ isOpen, onClose, currentTask }) => {
 								type="text"
 								id="title"
 								name="title"
+								placeholder="Enter task title"
 								required
 								value={task.title}
 								onChange={handleChange}
@@ -72,6 +66,7 @@ const Modal = ({ isOpen, onClose, currentTask }) => {
 							<textarea
 								id="description"
 								name="description"
+								placeholder="Write a short description of task"
 								value={task.description}
 								onChange={handleChange}
 								required
@@ -120,7 +115,7 @@ const Modal = ({ isOpen, onClose, currentTask }) => {
 							<button
 								type="button"
 								className="rounded-md border border-gray-600 px-4 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-gray-800"
-								onClick={onClose}
+								onClick={closeModal}
 							>
 								Cancel
 							</button>

@@ -39,7 +39,7 @@ const ProjectBoard = () => {
 				<Modal
 					isOpen={showModal}
 					currentTask={currentTask}
-					onClose={handleModalClose}
+					closeModal={handleModalClose}
 				/>
 			)}
 
