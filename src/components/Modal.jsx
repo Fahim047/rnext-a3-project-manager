@@ -1,13 +1,15 @@
 import { useState } from 'react';
+import { useTasks } from '../contexts/TasksContext';
 
 const Modal = ({ isOpen, onClose, currentTask }) => {
+	const { dispatch } = useTasks();
 	const [task, setTask] = useState(
 		currentTask ?? {
 			id: crypto.randomUUID(),
 			title: '',
 			description: '',
 			date: '',
-			status: '',
+			status: 'To-Do',
 		}
 	);
 	const [isAdd, setIsAdd] = useState(currentTask ? false : true);
@@ -19,6 +21,21 @@ const Modal = ({ isOpen, onClose, currentTask }) => {
 			[name]: value,
 		});
 	};
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		if (isAdd) {
+			dispatch({
+				type: 'ADD',
+				payload: task,
+			});
+		} else {
+			dispatch({
+				type: 'UPDATE',
+				payload: task,
+			});
+		}
+		onClose();
+	};
 	if (!isOpen) return null;
 	return (
 		<div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
@@ -27,7 +44,7 @@ const Modal = ({ isOpen, onClose, currentTask }) => {
 					<h2 className="mb-6 text-2xl font-bold text-green-400">
 						{isAdd ? 'Create Task' : 'Update Task'}
 					</h2>
-					<form>
+					<form onSubmit={handleSubmit}>
 						<div className="mb-4">
 							<label
 								htmlFor="title"
@@ -57,6 +74,7 @@ const Modal = ({ isOpen, onClose, currentTask }) => {
 								name="description"
 								value={task.description}
 								onChange={handleChange}
+								required
 								rows="3"
 								className="w-full rounded-md border border-gray-600 bg-gray-700 px-3 py-2 text-white placeholder-gray-400 shadow-sm focus:border-green-500 focus:outline-none focus:ring-2 focus:ring-green-500"
 							></textarea>
@@ -72,6 +90,7 @@ const Modal = ({ isOpen, onClose, currentTask }) => {
 								type="date"
 								id="date"
 								name="date"
+								required
 								value={task.date}
 								onChange={handleChange}
 								className="w-full rounded-md border border-gray-600 bg-gray-700 px-3 py-2 text-white shadow-sm focus:border-green-500 focus:outline-none focus:ring-2 focus:ring-green-500"

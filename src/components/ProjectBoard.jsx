@@ -14,7 +14,6 @@ const ProjectBoard = () => {
 		setShowModal(true);
 	};
 	const handleEditTask = (task) => {
-		console.log(task);
 		setCurrentTask(task);
 		setShowModal(true);
 	};
