@@ -1,85 +1,115 @@
-const Modal = ({ isOpen, onClose }) => {
+import { useState } from 'react';
+
+const Modal = ({ isOpen, onClose, currentTask }) => {
+	const [task, setTask] = useState(
+		currentTask ?? {
+			id: crypto.randomUUID(),
+			title: '',
+			description: '',
+			date: '',
+			status: '',
+		}
+	);
+	const [isAdd, setIsAdd] = useState(currentTask ? false : true);
+	const handleChange = (e) => {
+		const name = e.target.name;
+		const value = e.target.value;
+		setTask({
+			...task,
+			[name]: value,
+		});
+	};
 	if (!isOpen) return null;
 	return (
 		<div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-			<div class="w-full max-w-md rounded-lg bg-gray-800 shadow-xl">
-				<div class="p-6">
-					<h2 class="mb-6 text-2xl font-bold text-green-400">Create Task</h2>
+			<div className="w-full max-w-md rounded-lg bg-gray-800 shadow-xl">
+				<div className="p-6">
+					<h2 className="mb-6 text-2xl font-bold text-green-400">
+						{isAdd ? 'Create Task' : 'Update Task'}
+					</h2>
 					<form>
-						<div class="mb-4">
+						<div className="mb-4">
 							<label
-								for="taskName"
-								class="mb-1 block text-sm font-medium text-gray-300"
+								htmlFor="title"
+								className="mb-1 block text-sm font-medium text-gray-300"
 							>
 								Task Name
 							</label>
 							<input
 								type="text"
-								id="taskName"
-								name="taskName"
+								id="title"
+								name="title"
 								required
-								class="w-full rounded-md border border-gray-600 bg-gray-700 px-3 py-2 text-white placeholder-gray-400 shadow-sm focus:border-green-500 focus:outline-none focus:ring-2 focus:ring-green-500"
+								value={task.title}
+								onChange={handleChange}
+								className="w-full rounded-md border border-gray-600 bg-gray-700 px-3 py-2 text-white placeholder-gray-400 shadow-sm focus:border-green-500 focus:outline-none focus:ring-2 focus:ring-green-500"
 							/>
 						</div>
-						<div class="mb-4">
+						<div className="mb-4">
 							<label
-								for="description"
-								class="mb-1 block text-sm font-medium text-gray-300"
+								htmlFor="description"
+								className="mb-1 block text-sm font-medium text-gray-300"
 							>
 								Description
 							</label>
 							<textarea
 								id="description"
 								name="description"
+								value={task.description}
+								onChange={handleChange}
 								rows="3"
-								class="w-full rounded-md border border-gray-600 bg-gray-700 px-3 py-2 text-white placeholder-gray-400 shadow-sm focus:border-green-500 focus:outline-none focus:ring-2 focus:ring-green-500"
+								className="w-full rounded-md border border-gray-600 bg-gray-700 px-3 py-2 text-white placeholder-gray-400 shadow-sm focus:border-green-500 focus:outline-none focus:ring-2 focus:ring-green-500"
 							></textarea>
 						</div>
-						<div class="mb-4">
+						<div className="mb-4">
 							<label
-								for="dueDate"
-								class="mb-1 block text-sm font-medium text-gray-300"
+								htmlFor="date"
+								className="mb-1 block text-sm font-medium text-gray-300"
 							>
 								Due Date
 							</label>
 							<input
 								type="date"
-								id="dueDate"
-								name="dueDate"
-								class="w-full rounded-md border border-gray-600 bg-gray-700 px-3 py-2 text-white shadow-sm focus:border-green-500 focus:outline-none focus:ring-2 focus:ring-green-500"
+								id="date"
+								name="date"
+								value={task.date}
+								onChange={handleChange}
+								className="w-full rounded-md border border-gray-600 bg-gray-700 px-3 py-2 text-white shadow-sm focus:border-green-500 focus:outline-none focus:ring-2 focus:ring-green-500"
 							/>
 						</div>
-						<div class="mb-4">
+						<div className="mb-4">
 							<label
-								for="category"
-								class="mb-1 block text-sm font-medium text-gray-300"
+								htmlFor="status"
+								className="mb-1 block text-sm font-medium text-gray-300"
 							>
 								Category
 							</label>
 							<select
-								id="category"
-								name="category"
-								class="w-full rounded-md border border-gray-600 bg-gray-700 px-3 py-2 text-white shadow-sm focus:border-green-500 focus:outline-none focus:ring-2 focus:ring-green-500"
+								id="status"
+								name="status"
+								value={task.status}
+								onChange={handleChange}
+								className="w-full rounded-md border border-gray-600 bg-gray-700 px-3 py-2 text-white shadow-sm focus:border-green-500 focus:outline-none focus:ring-2 focus:ring-green-500"
 							>
-								<option value="todo">To-Do</option>
-								<option value="inprogress">On Progress</option>
-								<option value="done">Done</option>
-								<option value="revised">Revised</option>
+								<option value="To-Do">To-Do</option>
+								<option value="On Progress">On Progress</option>
+								<option value="Done">Done</option>
+								<option value="Revise">Revise</option>
 							</select>
 						</div>
-						<div class="flex justify-end space-x-3">
+						<div className="flex justify-end space-x-3">
 							<button
 								type="button"
-								class="rounded-md border border-gray-600 px-4 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-gray-800"
+								className="rounded-md border border-gray-600 px-4 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-gray-800"
 								onClick={onClose}
 							>
 								Cancel
 							</button>
 							<button
 								type="submit"
-								class="rounded-md border border-transparent bg-green-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-gray-800"
+								className="rounded-md border border-transparent bg-green-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-gray-800"
 							>
-								Create Task
+								{isAdd ? 'Create Task' : 'Update Task'}
 							</button>
 						</div>
 					</form>

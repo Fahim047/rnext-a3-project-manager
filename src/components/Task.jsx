@@ -1,8 +1,8 @@
 import { useTasks } from '../contexts/TasksContext';
 import { PenIcon, TrashIcon } from './icons';
 
-const Task = ({ task, titleColor }) => {
-	const { id, title, description, creationDate } = task;
+const Task = ({ task, titleColor, onEdit }) => {
+	const { id, title, description, date } = task;
 	const { tasks, dispatch } = useTasks();
 	return (
 		<div className="mb-4 rounded-lg bg-gray-800 p-4">
@@ -19,13 +19,13 @@ const Task = ({ task, titleColor }) => {
 					>
 						<TrashIcon />
 					</button>
-					<button>
+					<button onClick={() => onEdit(task)}>
 						<PenIcon />
 					</button>
 				</div>
 			</div>
 			<p className="mb-2 text-sm text-zinc-200">{description}</p>
-			<p className="mt-6 text-xs text-zinc-400">{creationDate}</p>
+			<p className="mt-6 text-xs text-zinc-400">{date}</p>
 		</div>
 	);
 };
