@@ -1,11 +1,12 @@
 import { useState } from 'react';
-import { taskCategories, tasksData } from '../data/data';
+import { useTasks } from '../contexts/TasksContext';
+import { taskCategories } from '../data/data';
 import { PlusIcon } from './icons';
 import Modal from './Modal';
 import TaskCategory from './TaskCategory';
 
 const ProjectBoard = () => {
-	const [tasks, setTasks] = useState(tasksData);
+	const { tasks } = useTasks();
 	const [showModal, setShowModal] = useState(false);
 	return (
 		<div className="mx-auto max-w-7xl p-6">

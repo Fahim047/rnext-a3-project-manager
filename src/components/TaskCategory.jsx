@@ -25,12 +25,7 @@ const TaskCategory = ({ taskType, tasks }) => {
 
 				<div>
 					{sortedTasks.map((task) => (
-						<Task
-							titleColor={textColor}
-							title={task.title}
-							description={task.description}
-							createdAt={task.creationDate}
-						/>
+						<Task titleColor={textColor} task={task} />
 					))}
 				</div>
 
