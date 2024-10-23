@@ -15,7 +15,7 @@ const Sidebar = () => {
 					{navLinks.map((link) => {
 						const Icon = link.icon;
 						return (
-							<li>
+							<li key={link}>
 								<a href="#" className="flex items-center">
 									<Icon />
 									{link.label}

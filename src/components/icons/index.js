@@ -11,6 +11,7 @@ import MessageIcon from './message';
 import PenIcon from './pen';
 import PlusIcon from './plus';
 import ProjectIcon from './project';
+import SadIcon from './sad';
 import SettingIcon from './setting';
 import TrashIcon from './trash';
 export {
@@ -27,6 +28,7 @@ export {
 	PenIcon,
 	PlusIcon,
 	ProjectIcon,
+	SadIcon,
 	SettingIcon,
 	TrashIcon,
 };
