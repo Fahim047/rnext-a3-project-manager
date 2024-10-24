@@ -36,7 +36,7 @@ const Modal = ({ isOpen, closeModal, currentTask }) => {
 	if (!isOpen) return null;
 	return (
 		<div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-			<div className="w-full max-h-screen overflow-y-auto max-w-md rounded-lg bg-gray-800 shadow-xl">
+			<div className="w-full max-w-md rounded-lg bg-gray-800 shadow-xl">
 				<div className="p-6">
 					<h2 className="mb-6 text-2xl font-bold text-green-400">
 						{isAdd ? 'Create Task' : 'Update Task'}
