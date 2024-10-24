@@ -1,14 +1,14 @@
+import { toast } from 'react-toastify';
 import TasksProvider from '../contexts/TasksContext';
 import Header from './Header';
 import ProjectBoard from './ProjectBoard';
 
 const Main = () => {
+	const showToast = () => toast('Hello world!');
 	return (
 		<main className="flex-1 overflow-y-auto overflow-x-hidden">
 			<TasksProvider>
-				{/* <!-- Top Bar --> */}
 				<Header />
-				{/* <!-- Project Content --> */}
 				<ProjectBoard />
 			</TasksProvider>
 		</main>

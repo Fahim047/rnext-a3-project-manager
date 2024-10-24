@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { toast } from 'react-toastify';
 import { useTasks } from '../contexts/TasksContext';
 
 const Modal = ({ isOpen, closeModal, currentTask }) => {
@@ -28,6 +29,9 @@ const Modal = ({ isOpen, closeModal, currentTask }) => {
 			payload: task,
 		});
 		closeModal();
+		toast.success(isAdd ? 'Task added!' : 'Task updated!', {
+			theme: 'dark',
+		});
 	};
 	if (!isOpen) return null;
 	return (
