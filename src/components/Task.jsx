@@ -19,7 +19,7 @@ const Task = ({ task, titleColor, onEdit }) => {
 								payload: id,
 							});
 							toast.dismiss();
-							toast.success('Task deleted!');
+							toast.success('Task deleted!', { theme: 'dark' });
 						}}
 					>
 						Delete
